@@ -10,30 +10,36 @@ import edu.wpi.first.wpilibj.templates.subsystems.Magazine;
  *
  * @author Admin
  */
-public class LoaderUp extends CommandBase{
-    
-    public LoaderUp(){
+public class ActivateSolenoid extends CommandBase {
+    boolean setValue;
+    public ActivateSolenoid(boolean sv) {
         requires(magazine);
+        setValue = sv;
     }
 
+    // Called just before this Command runs the first time
     protected void initialize() {
     }
 
+    // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-        magazine.loaderUp();
+        magazine.activateSolenoid(setValue);
     }
 
+    // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
         return true;
     }
 
+    // Called once after isFinished returns true
     protected void end() {
     }
 
+    // Called when another command which requires one or more of the same
+    // subsystems is scheduled to run
     protected void interrupted() {
     }
-    
+
     private void requires(Magazine magazine) {
     }
-    
 }

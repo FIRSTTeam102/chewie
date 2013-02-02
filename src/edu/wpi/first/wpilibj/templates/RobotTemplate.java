@@ -58,6 +58,8 @@ public class RobotTemplate extends IterativeRobot {
             autonomousCommand.cancel();
     }
 
+    public void disabledInit() {
+    }
     /**
      * This function is called periodically during operator control
      */

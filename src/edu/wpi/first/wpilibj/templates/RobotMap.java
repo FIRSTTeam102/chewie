@@ -17,16 +17,42 @@ public class RobotMap {
     // public static final int rangefinderPort = 1;
     // public static final int rangefinderModule = 1;
     
-    public static final int leftMotor = 1;
-    public static final int rightMotor = 2;
+    //Motors
+    public static final int leftMotor = 6;
+    public static final int rightMotor = 5;
+    public static final int leftRear = 4;
+    public static final int rightRear = 3;
     
     //Digital Outputs
     public static final int compressorSwitchChannel = 1;
     public static final int compressorSensorChannel = 13;
     
     
-    public static int gateSolenoidUpPort = 1;
-    public static int loadersolenoidUpPort = 5;
-    public static int loadersolenoidDownPort = 6;
+    public static final int gateSolenoidUpPort = 1;
+    public static final int loadersolenoidUpPort = 5;
+    public static final int loadersolenoidDownPort = 6;
+    public static final int armOnePort = 2;
+    public static final int armTwoPort = 3;
+    public static final int armThreePort = 4;
+    public static final int armFourPort = 7;
     public static final int solenoidModule = 2;
+    
+     // XBox Controller Button Indexes
+    public static final int xBoxAIndex = 1;
+    public static final int xBoxBIndex = 2;
+    public static final int xBoxXIndex = 3;
+    public static final int xBoxYIndex = 4;
+    public static final int xBoxLeftBumperIndex = 5;
+    public static final int xBoxRightBumperIndex = 6;
+    public static final int xBoxBackButtonIndex = 7;
+    public static final int xBoxStartButtonIndex = 8;
+    
+    
+    // XBox Controller Joystick Axis
+    public static final int xBoxLeftXAxis = 1;
+    public static final int xBoxLeftYAxis = 2;
+    public static final int xBoxTriggerAxis = 3;  // Left trigger 0.0-0.5, right trigger 0.5-1.0
+    public static final int xBoxRightXAxis = 4;    
+    public static final int xBoxRightYAxis = 5;
+    public static final int xBoxDPadHorizontalAxis = 6;
 }

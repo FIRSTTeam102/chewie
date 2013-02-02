@@ -10,9 +10,9 @@ import edu.wpi.first.wpilibj.templates.subsystems.Magazine;
  *
  * @author Admin
  */
-public class LoaderDown extends CommandBase{
+public class LoaderDropDisc extends CommandBase{
     
-    public LoaderDown(){
+    public LoaderDropDisc(){
         requires(magazine);
     }
 

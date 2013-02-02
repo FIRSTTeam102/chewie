@@ -1,7 +1,7 @@
 
 package edu.wpi.first.wpilibj.templates.commands;
 
-import edu.wpi.first.wpilibj.templates.subsystems.DriveTrain;
+import edu.wpi.first.wpilibj.templates.subsystems.OldDriveTrain;
 
 /**
  *
@@ -37,6 +37,6 @@ public class DriveWithXBox extends CommandBase {
     protected void interrupted() {
     }
     
-     private void requires(DriveTrain driveTrain) {
+     private void requires(OldDriveTrain driveTrain) {
     }
 }

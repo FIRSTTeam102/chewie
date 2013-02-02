@@ -4,36 +4,36 @@
  */
 package edu.wpi.first.wpilibj.templates.commands;
 
-import edu.wpi.first.wpilibj.templates.RobotMap;
+import edu.wpi.first.wpilibj.templates.subsystems.Magazine;
 
 /**
  *
  * @author Admin
  */
-public class SolenoidIncrease extends CommandBase{
-   
-    int module = RobotMap.gateSolenoidUpPort;
-   
-   public SolenoidIncrease(){
+public class LoaderLoadDisc extends CommandBase{
     
+    public LoaderLoadDisc(){
+        requires(magazine);
     }
 
     protected void initialize() {
     }
 
     protected void execute() {
-        
-        module = ++module % 6;
+        magazine.loaderUp();
     }
 
     protected boolean isFinished() {
-        return false;
+        return true;
     }
 
     protected void end() {
     }
 
     protected void interrupted() {
+    }
+    
+    private void requires(Magazine magazine) {
     }
     
 }
