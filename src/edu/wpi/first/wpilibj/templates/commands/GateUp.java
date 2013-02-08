@@ -4,7 +4,7 @@
  */
 package edu.wpi.first.wpilibj.templates.commands;
 
-import edu.wpi.first.wpilibj.templates.subsystems.Magazine;
+import edu.wpi.first.wpilibj.templates.subsystems.OldMagazine;
 
 /**
  *
@@ -37,6 +37,6 @@ public class GateUp extends CommandBase {
     protected void interrupted() {
     }
 
-    private void requires(Magazine magazine) {
+    private void requires(OldMagazine magazine) {
     }
 }

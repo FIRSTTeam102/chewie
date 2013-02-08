@@ -5,7 +5,7 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj.templates.OI;
 import edu.wpi.first.wpilibj.templates.subsystems.DriveTrain;
 import edu.wpi.first.wpilibj.templates.subsystems.OldDriveTrain;
-import edu.wpi.first.wpilibj.templates.subsystems.Magazine;
+import edu.wpi.first.wpilibj.templates.subsystems.OldMagazine;
 import edu.wpi.first.wpilibj.templates.subsystems.Pnuematics;
 
 
@@ -20,7 +20,7 @@ public abstract class CommandBase extends Command {
     public static OI oi;
     // Create a single static instance of all of your subsystems
    public static Pnuematics pnuematics;
-   public static Magazine magazine;
+   public static OldMagazine magazine;
    public static DriveTrain driveTrain;
   
 
@@ -33,7 +33,7 @@ public abstract class CommandBase extends Command {
         oi = new OI();
 
         pnuematics = new Pnuematics();
-        magazine = new Magazine();
+        magazine = new OldMagazine();
         driveTrain = new DriveTrain();
         
         // Show what command your subsystem is running on the SmartDashboard

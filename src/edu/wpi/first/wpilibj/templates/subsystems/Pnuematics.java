@@ -26,8 +26,8 @@ public class Pnuematics extends Subsystem {
     DigitalInput pressureSensor;
 
     public Pnuematics(){
-        compressorSwitch = new Relay(RobotMap.compressorSwitchChannel, Relay.Direction.kForward) ;
-        pressureSensor = new DigitalInput(RobotMap.compressorSensorChannel) ;
+        compressorSwitch = new Relay(RobotMap.compressorSwitchPort, Relay.Direction.kForward) ;
+        pressureSensor = new DigitalInput(RobotMap.compressorSensorPort) ;
         relayOn = false;
     }
     public void initDefaultCommand() {

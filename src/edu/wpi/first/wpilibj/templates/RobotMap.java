@@ -17,25 +17,61 @@ public class RobotMap {
     // public static final int rangefinderPort = 1;
     // public static final int rangefinderModule = 1;
     
-    //Motors
-    public static final int leftMotor = 6;
-    public static final int rightMotor = 5;
-    public static final int leftRear = 4;
-    public static final int rightRear = 3;
+    public static final int solenoidModule = 2; //4 port crio this is port 4, on 8 port crio this is port 7
+    
+    // Drive Motors
+    public static final int leftFrontMotorPort = 1;
+    public static final int rightFrontMotorPort = 9;
+    public static final int leftRearMotorPort = 2;
+    public static final int rightRearMotorPort = 10;
     
     //Digital Outputs
-    public static final int compressorSwitchChannel = 1;
-    public static final int compressorSensorChannel = 13;
+    public static final int compressorSwitchPort = 8;
+    public static final int compressorSensorPort = 10;
     
     
-    public static final int gateSolenoidUpPort = 1;
-    public static final int loadersolenoidUpPort = 5;
-    public static final int loadersolenoidDownPort = 6;
-    public static final int armOnePort = 2;
-    public static final int armTwoPort = 3;
-    public static final int armThreePort = 4;
-    public static final int armFourPort = 7;
-    public static final int solenoidModule = 2;
+    
+    
+    //Shooter *Formerly Magazine*
+    
+    //Motor Ports
+    public static final int spinnerMotor = 6;
+    
+    //Solenoid Ports
+    public static final int gateSolenoidUpPort = 7;
+    public static final int loaderInSolenoidPort = 5;
+    public static final int loaderOutSolenoidPort = 6;
+    
+    
+    
+    
+    
+    //Climbing
+    
+    //Motor Ports
+    public static final int leftLongMotorPort = 3;
+    public static final int leftShortMotorPort = 4;
+    public static final int rightLongMotorPort = 8;
+    public static final int rightShortMotorPort = 7;
+    
+    //Sensor Digital Input Port
+    public static final int leftLongMaxSensorPort = 1;
+    public static final int leftShortMaxSensorPort = 2;
+    public static final int rightLongMaxSensorPort = 9;
+    public static final int rightShortMaxSensorPort = 8;
+    public static final int leftLongMinSensorPort = 3;
+    public static final int leftShortMinSensorPort = 4;
+    public static final int rightLongMinSensorPort = 7;
+    public static final int rightShortMinSensorPort = 6;
+    
+    //Solenoid Ports
+    public static final int leftLongExtendPort = 1;
+    public static final int leftShortExtendPort = 2;
+    public static final int rightLongExtendPort = 3;
+    public static final int rightShortExtendPort = 4;
+    
+    
+    
     
      // XBox Controller Button Indexes
     public static final int xBoxAIndex = 1;

@@ -29,10 +29,10 @@ public class OldDriveTrain extends Subsystem{
 
     // Initialize your subsystem here
     public OldDriveTrain() {
-        leftMotor = new Victor(RobotMap.leftMotor);
-        rightMotor = new Victor(RobotMap.rightMotor);
-        leftRear = new Victor(RobotMap.leftRear);
-        rightRear = new Talon(RobotMap.rightRear);
+        leftMotor = new Victor(RobotMap.leftFrontMotorPort);
+        rightMotor = new Victor(RobotMap.rightFrontMotorPort);
+        leftRear = new Victor(RobotMap.leftRearMotorPort);
+        rightRear = new Talon(RobotMap.rightRearMotorPort);
         
         drive = new RobotDrive(leftMotor, rightMotor, leftRear, rightRear);
     }
