@@ -10,6 +10,7 @@ import edu.wpi.first.wpilibj.Solenoid;
 import edu.wpi.first.wpilibj.Talon;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import edu.wpi.first.wpilibj.templates.RobotMap;
+import edu.wpi.first.wpilibj.templates.commands.SpinnerOn;
 
 /**
  *
@@ -26,15 +27,14 @@ public class Shooter extends Subsystem
 
     public void initDefaultCommand()
     {
-        // Set the default command for a subsystem here.
-        //setDefaultCommand(new MySpecialCommand());
+        setDefaultCommand(new SpinnerOn());
     }
 
     public void gateUp()
     {
         if (isSpinnerOn())
         {
-            gateSolenoid.set(true);
+            gateSolenoid.set(false);
         }
     }
 
@@ -42,7 +42,7 @@ public class Shooter extends Subsystem
     {
         if (isSpinnerOn())
         {
-            gateSolenoid.set(false);
+            gateSolenoid.set(true);
         }
     }
 

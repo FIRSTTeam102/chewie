@@ -57,6 +57,8 @@ public class Pnuematics extends Subsystem {
         else
             switchCompressor(true);
         
+        MessageLogger.LogMessage("compressor: " + pressureSensor.get());
+        
     }
     public void updateStatus()
     {

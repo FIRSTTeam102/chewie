@@ -4,6 +4,7 @@
  */
 package edu.wpi.first.wpilibj.templates.commands;
 
+import Team102Lib.MessageLogger;
 import edu.wpi.first.wpilibj.templates.RobotMap;
 
 /**
@@ -27,6 +28,7 @@ public class SpinnerOn extends CommandBase
     protected void execute()
     {
         shooter.spinner.set(RobotMap.invertSpinnerMotor);
+        MessageLogger.LogMessage("Spinner is: " + shooter.spinner.get());
     }
 
     // Make this return true when this Command no longer needs to run execute()

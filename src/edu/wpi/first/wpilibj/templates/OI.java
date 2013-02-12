@@ -10,6 +10,7 @@ import edu.wpi.first.wpilibj.templates.commands.CompressorOn;
 import edu.wpi.first.wpilibj.templates.commands.GateDown;
 import edu.wpi.first.wpilibj.templates.commands.GateUp;
 import edu.wpi.first.wpilibj.templates.commands.Shoot;
+import edu.wpi.first.wpilibj.templates.commands.SpinnerOn;
 import edu.wpi.first.wpilibj.templates.commands.SpinnerToggle;
 import edu.wpi.first.wpilibj.templates.subsystems.Shooter;
 /**
@@ -19,8 +20,9 @@ import edu.wpi.first.wpilibj.templates.subsystems.Shooter;
 public class OI {
     private Joystick xBox;
     private JoystickButton xBoxA;
-    private JoystickButton xBoxB;
     private JoystickButton xBoxStart;
+    private JoystickButton xBoxB;
+  
     
     
     public OI() {
@@ -30,10 +32,10 @@ public class OI {
 
             xBoxA = new JoystickButton(xBox, RobotMap.xBoxAIndex);
             xBoxB = new JoystickButton(xBox, RobotMap.xBoxBIndex);
-            xBoxStart = new JoystickButton(xBox, RobotMap.xBoxStartButtonIndex);
-            
-            xBoxStart.whenPressed(new SpinnerToggle());
+       
             xBoxA.whenPressed(new Shoot());
+         //   xBoxB.whenPressed(new SpinnerOn());
+          
         }
         catch(Exception ex1)
         {

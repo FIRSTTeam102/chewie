@@ -13,7 +13,6 @@ import edu.wpi.first.wpilibj.command.Subsystem;
  */
 public class GetSensors extends CommandBase
 {
-    
     public GetSensors()
     {
         requires(climber);
@@ -27,8 +26,8 @@ public class GetSensors extends CommandBase
     // Called repeatedly when this Command is scheduled to run
     protected void execute()
     {
-        MessageLogger.LogMessage("Sensor 1: " + climber.isLeftLongMaxSensorOn());
-        MessageLogger.LogMessage("Sensor 2: " + climber.isLeftShortMaxSensorOn());
+//        MessageLogger.LogMessage("Sensor 1: " + climber.isLeftLongMaxSensorOn());
+//        MessageLogger.LogMessage("Sensor 2: " + climber.isLeftShortMaxSensorOn());
     }
 
     // Make this return true when this Command no longer needs to run execute()
