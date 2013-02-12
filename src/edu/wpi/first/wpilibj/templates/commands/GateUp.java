@@ -5,6 +5,7 @@
 package edu.wpi.first.wpilibj.templates.commands;
 
 import edu.wpi.first.wpilibj.templates.subsystems.OldMagazine;
+import edu.wpi.first.wpilibj.templates.subsystems.Shooter;
 
 /**
  *
@@ -13,14 +14,14 @@ import edu.wpi.first.wpilibj.templates.subsystems.OldMagazine;
 public class GateUp extends CommandBase {
     
     public GateUp() {
-        requires(magazine);
+        requires(shooter);
     }
      protected void initialize() {
     }
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-      magazine.gateUp();
+      shooter.gateUp();
     }
 
     // Make this return true when this Command no longer needs to run execute()
@@ -37,6 +38,6 @@ public class GateUp extends CommandBase {
     protected void interrupted() {
     }
 
-    private void requires(OldMagazine magazine) {
+    private void requires(Shooter shooter) {
     }
 }

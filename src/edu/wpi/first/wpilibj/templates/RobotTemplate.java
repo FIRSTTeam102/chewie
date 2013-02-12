@@ -8,6 +8,7 @@
 package edu.wpi.first.wpilibj.templates;
 
 
+import Team102Lib.MessageLogger;
 import edu.wpi.first.wpilibj.IterativeRobot;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
@@ -34,19 +35,40 @@ public class RobotTemplate extends IterativeRobot {
         // instantiate the command used for the autonomous period
        
         // Initialize all subsystems
+        try{
         CommandBase.init();
+        }
+        catch(Exception e){
+            MessageLogger.LogError("Unhandled Exception in robotInit()");
+            MessageLogger.LogError(e.toString());
+            e.printStackTrace();
+        }
     }
 
     public void autonomousInit() {
         // schedule the autonomous command (example)
-        autonomousCommand.start();
+        try{
+            autonomousCommand.start();
+        }
+        catch(Exception e){
+            MessageLogger.LogError("Unhandled Exception in autonomousInit()");
+            MessageLogger.LogError(e.toString());
+            e.printStackTrace();
+        }
     }
 
     /**
      * This function is called periodically during autonomous
      */
     public void autonomousPeriodic() {
-        Scheduler.getInstance().run();
+        try{
+            Scheduler.getInstance().run();
+        }
+        catch(Exception e){
+            MessageLogger.LogError("Unhandled Exception in autonomousPeriodic()");
+            MessageLogger.LogError(e.toString());
+            e.printStackTrace();
+        }
     }
 
     public void teleopInit() {
@@ -54,23 +76,54 @@ public class RobotTemplate extends IterativeRobot {
         // teleop starts running. If you want the autonomous to 
         // continue until interrupted by another command, remove
         // this line or comment it out.
-        if (autonomousCommand != null)
+        try{
+            if (autonomousCommand != null)
             autonomousCommand.cancel();
+    }
+        catch(Exception e){
+            MessageLogger.LogError("Unhandled Exception in teleopInit()");
+            MessageLogger.LogError(e.toString());
+            e.printStackTrace();
+        }
     }
 
     public void disabledInit() {
+        try{
+        
+        }
+        catch(Exception e){
+            MessageLogger.LogError("Unhandled Exception in disabledInit()");
+            MessageLogger.LogError(e.toString());
+            e.printStackTrace();
+        }
     }
     /**
      * This function is called periodically during operator control
      */
     public void teleopPeriodic() {
-        Scheduler.getInstance().run();
+        
+        try{
+            Scheduler.getInstance().run();
+        }
+        catch(Exception e){
+            MessageLogger.LogError("Unhandled Exception in teleopPeriodic()");
+            MessageLogger.LogError(e.toString());
+            e.printStackTrace();
+        }
     }
     
     /**
      * This function is called periodically during test mode
      */
     public void testPeriodic() {
-        LiveWindow.run();
+        
+        try{
+            LiveWindow.run();
+        }
+        catch(Exception e){
+            MessageLogger.LogError("Unhandled Exception in testPeriodic()");
+            MessageLogger.LogError(e.toString());
+            e.printStackTrace();
+        }
     }
 }

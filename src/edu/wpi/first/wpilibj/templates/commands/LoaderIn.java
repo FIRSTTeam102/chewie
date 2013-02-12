@@ -5,22 +5,23 @@
 package edu.wpi.first.wpilibj.templates.commands;
 
 import edu.wpi.first.wpilibj.templates.subsystems.OldMagazine;
+import edu.wpi.first.wpilibj.templates.subsystems.Shooter;
 
 /**
  *
  * @author Admin
  */
-public class LoaderLoadDisc extends CommandBase{
+public class LoaderIn extends CommandBase{
     
-    public LoaderLoadDisc(){
-        requires(magazine);
+    public LoaderIn(){
+        requires(shooter);
     }
 
     protected void initialize() {
     }
 
     protected void execute() {
-        magazine.loaderUp();
+        shooter.loaderIn();
     }
 
     protected boolean isFinished() {
@@ -33,7 +34,7 @@ public class LoaderLoadDisc extends CommandBase{
     protected void interrupted() {
     }
     
-    private void requires(OldMagazine magazine) {
+    private void requires(Shooter shooter) {
     }
     
 }

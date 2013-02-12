@@ -6,12 +6,12 @@ import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.buttons.Button;
 import edu.wpi.first.wpilibj.buttons.DigitalIOButton;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
-import edu.wpi.first.wpilibj.templates.commands.ActivateSolenoid;
 import edu.wpi.first.wpilibj.templates.commands.CompressorOn;
 import edu.wpi.first.wpilibj.templates.commands.GateDown;
 import edu.wpi.first.wpilibj.templates.commands.GateUp;
-import edu.wpi.first.wpilibj.templates.commands.SolenoidIncrease;
-
+import edu.wpi.first.wpilibj.templates.commands.Shoot;
+import edu.wpi.first.wpilibj.templates.commands.SpinnerToggle;
+import edu.wpi.first.wpilibj.templates.subsystems.Shooter;
 /**
  * This class is the glue that binds the controls on the physical operator
  * interface to the commands and command groups that allow control of the robot.
@@ -20,6 +20,7 @@ public class OI {
     private Joystick xBox;
     private JoystickButton xBoxA;
     private JoystickButton xBoxB;
+    private JoystickButton xBoxStart;
     
     
     public OI() {
@@ -29,11 +30,10 @@ public class OI {
 
             xBoxA = new JoystickButton(xBox, RobotMap.xBoxAIndex);
             xBoxB = new JoystickButton(xBox, RobotMap.xBoxBIndex);
-
-            xBoxA.whenPressed(new GateUp());
-            xBoxA.whenReleased(new GateDown());
-            xBoxB.whenPressed(new ActivateSolenoid(true));
-            xBoxB.whenReleased(new ActivateSolenoid(false));
+            xBoxStart = new JoystickButton(xBox, RobotMap.xBoxStartButtonIndex);
+            
+            xBoxStart.whenPressed(new SpinnerToggle());
+            xBoxA.whenPressed(new Shoot());
         }
         catch(Exception ex1)
         {

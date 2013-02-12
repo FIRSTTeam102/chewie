@@ -30,11 +30,11 @@ public class DriveTrain extends Subsystem {
     double leftJoyY;
     
     public DriveTrain() {
-        leftMotor = new Victor(RobotMap.leftFrontMotorPort);
+        leftMotor = new Talon(RobotMap.leftFrontMotorPort);
         rightMotor = new Talon(RobotMap.rightFrontMotorPort);
         // Talons have a built in deadband
-        leftRear = new Victor(RobotMap.leftRearMotorPort);
-        rightRear = new Victor(RobotMap.rightRearMotorPort);
+        leftRear = new Talon(RobotMap.leftRearMotorPort);
+        rightRear = new Talon(RobotMap.rightRearMotorPort);
         
         drive = new RobotDrive(leftMotor, leftRear, rightMotor, rightRear);
         
