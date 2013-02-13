@@ -5,8 +5,6 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj.templates.OI;
 import edu.wpi.first.wpilibj.templates.subsystems.Climber;
 import edu.wpi.first.wpilibj.templates.subsystems.DriveTrain;
-import edu.wpi.first.wpilibj.templates.subsystems.OldDriveTrain;
-import edu.wpi.first.wpilibj.templates.subsystems.OldMagazine;
 import edu.wpi.first.wpilibj.templates.subsystems.Pnuematics;
 import edu.wpi.first.wpilibj.templates.subsystems.Shooter;
 

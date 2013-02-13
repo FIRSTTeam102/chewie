@@ -41,13 +41,13 @@ public class Pnuematics extends Subsystem {
         {
             compressorSwitch.set(Relay.Value.kOn);
             relayOn = true;
-            System.out.println(Timer.getFPGATimestamp() + ", Compressor On");
+            MessageLogger.LogMessage("Compressor On");
         }
         else
         {
             compressorSwitch.set(Relay.Value.kOff);
             relayOn = false;
-            System.out.println(Timer.getFPGATimestamp() + ", Compressor Off");
+            MessageLogger.LogMessage("Compressor Off");
         }
     }
     public void maintainPressure()
@@ -57,11 +57,7 @@ public class Pnuematics extends Subsystem {
         else
             switchCompressor(true);
         
-        MessageLogger.LogMessage("compressor: " + pressureSensor.get());
+//        MessageLogger.LogMessage("compressor: " + pressureSensor.get());
         
-    }
-    public void updateStatus()
-    {
-        SmartDashboard.putBoolean("pSensor:", pressureSensor.get());
     }
 }

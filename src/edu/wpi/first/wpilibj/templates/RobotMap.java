@@ -70,7 +70,7 @@ public class RobotMap {
     public static final int rightLongExtendPort = 3;
     public static final int rightShortExtendPort = 4;
     
-    public static final double invertSpinnerMotor = 1.0; //Make this -1.0 if Spinner motor needs to be inverted
+    public static final double spinnerMotorDirection = 1.0; //Make this -1.0 if Spinner motor needs to be inverted
     
     
      // XBox Controller Button Indexes

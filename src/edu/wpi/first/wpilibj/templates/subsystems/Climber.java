@@ -23,8 +23,8 @@ public class Climber extends Subsystem
     Solenoid rightLongExtendSolenoid = new Solenoid(RobotMap.solenoidModule, RobotMap.rightLongExtendPort);
     Solenoid rightShortExtendSolenoid = new Solenoid(RobotMap.solenoidModule, RobotMap.rightShortExtendPort);
     
-    Victor leftLongMotor = new Victor(RobotMap.leftLongMotorPort);
-    Victor leftShortMotor = new Victor(RobotMap.leftShortMotorPort);
+    Talon leftLongMotor = new Talon(RobotMap.leftLongMotorPort);
+    Talon leftShortMotor = new Talon(RobotMap.leftShortMotorPort);
     Talon rightLongMotor = new Talon(RobotMap.rightLongMotorPort);
     Talon rightShortMotor = new Talon(RobotMap.rightShortMotorPort);
     
@@ -36,7 +36,7 @@ public class Climber extends Subsystem
     DigitalInput rightLongMinSensor = new DigitalInput(RobotMap.rightLongMinSensorPort);
     DigitalInput rightShortMaxSensor = new DigitalInput(RobotMap.rightShortMaxSensorPort);
     DigitalInput rightShortMinSensor = new DigitalInput(RobotMap.rightShortMinSensorPort);
-    
+
     // Put methods for controlling this subsystem
     // here. Call these from Commands.
     public void initDefaultCommand()
@@ -44,14 +44,47 @@ public class Climber extends Subsystem
         // Set the default command for a subsystem here.
         setDefaultCommand(new GetSensors());
     }
+
     
-    public boolean isLeftLongMaxSensorOn() {
-        return leftLongMaxSensor.get();
+    // NOTE: these sensors return true when there are NOT sensing anything.  So we negate the get() so that the
+    // meaning of "SensorOn" is correct.
+    public boolean isLeftLongMaxSensorOn()
+    {
+        return !leftLongMaxSensor.get();
     }
-    
-     public boolean isLeftShortMaxSensorOn() {
-        return leftShortMaxSensor.get();
+
+    public boolean isLeftLongMinSensorOn()
+    {
+        return !leftLongMinSensor.get();
     }
-    
-    
+
+    public boolean isLeftShortMaxSensorOn()
+    {
+        return !leftShortMaxSensor.get();
+    }
+
+    public boolean isLeftShortMinSensorOn()
+    {
+        return !leftShortMinSensor.get();
+    }
+
+    public boolean isRightLongMaxSensorOn()
+    {
+        return !rightLongMaxSensor.get();
+    }
+
+    public boolean isRightLongMinSensorOn()
+    {
+        return !rightLongMinSensor.get();
+    }
+
+    public boolean isRightShortMaxSensorOn()
+    {
+        return !rightShortMaxSensor.get();
+    }
+
+    public boolean isRightShortMinSensorOn()
+    {
+        return !rightShortMinSensor.get();
+    }
 }

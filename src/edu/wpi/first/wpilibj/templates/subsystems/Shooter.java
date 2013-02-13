@@ -8,6 +8,7 @@ import Team102Lib.MathLib;
 import edu.wpi.first.wpilibj.DriverStationLCD;
 import edu.wpi.first.wpilibj.Solenoid;
 import edu.wpi.first.wpilibj.Talon;
+import edu.wpi.first.wpilibj.Victor;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import edu.wpi.first.wpilibj.templates.RobotMap;
 import edu.wpi.first.wpilibj.templates.commands.SpinnerOn;
@@ -23,7 +24,7 @@ public class Shooter extends Subsystem
     Solenoid gateSolenoid = new Solenoid(RobotMap.solenoidModule, RobotMap.gateSolenoidUpPort);
     Solenoid loaderInSolenoid = new Solenoid(RobotMap.solenoidModule, RobotMap.loaderInSolenoidPort);
     Solenoid loaderOutSolenoid = new Solenoid(RobotMap.solenoidModule, RobotMap.loaderOutSolenoidPort);
-    public Talon spinner = new Talon(RobotMap.spinnerMotor);
+    public Victor spinner = new Victor(RobotMap.spinnerMotor);
 
     public void initDefaultCommand()
     {
@@ -69,7 +70,7 @@ public class Shooter extends Subsystem
     {
         double spinnerValue = spinner.get();
         boolean spinnerOn;
-        if (RobotMap.invertSpinnerMotor > 0)
+        if (RobotMap.spinnerMotorDirection > 0)
         {
             spinnerOn = (spinnerValue > .98);
         } else

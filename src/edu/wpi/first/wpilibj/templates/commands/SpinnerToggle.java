@@ -31,7 +31,7 @@ public class SpinnerToggle extends CommandBase
         if(shooter.isSpinnerOn())
             shooter.spinner.set(0.0);
         else
-            shooter.spinner.set(RobotMap.invertSpinnerMotor);
+            shooter.spinner.set(RobotMap.spinnerMotorDirection);
     }
 
     // Make this return true when this Command no longer needs to run execute()
