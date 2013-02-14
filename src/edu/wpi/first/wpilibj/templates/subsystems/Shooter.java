@@ -5,6 +5,7 @@
 package edu.wpi.first.wpilibj.templates.subsystems;
 
 import Team102Lib.MathLib;
+import Team102Lib.MessageLogger;
 import edu.wpi.first.wpilibj.DriverStationLCD;
 import edu.wpi.first.wpilibj.Solenoid;
 import edu.wpi.first.wpilibj.Talon;
@@ -28,7 +29,6 @@ public class Shooter extends Subsystem
 
     public void initDefaultCommand()
     {
-        setDefaultCommand(new SpinnerOn());
     }
 
     public void gateUp()
@@ -69,6 +69,7 @@ public class Shooter extends Subsystem
     public boolean isSpinnerOn()
     {
         double spinnerValue = spinner.get();
+        MessageLogger.LogMessage("Spinner: " + spinnerValue);
         boolean spinnerOn;
         if (RobotMap.spinnerMotorDirection > 0)
         {
@@ -77,17 +78,36 @@ public class Shooter extends Subsystem
         {
             spinnerOn = (spinnerValue < -.98);
         }
+        return spinnerOn;
+    }
 
-        if (!spinnerOn)
+    public void turnSpinnerOn()
+    {
+        MessageLogger.LogMessage("Turning Spinner On");
+        spinner.set(RobotMap.spinnerMotorDirection);
+        updateDriverStation();
+
+    }
+
+    public void turnSpinnerOff()
+    {
+        MessageLogger.LogMessage("Turning Spinner Off");
+        spinner.set(0.0);
+        updateDriverStation();
+
+    }
+
+    public void updateDriverStation()
+    {
+        if (!isSpinnerOn())
         {
             DriverStationLCD.getInstance().println(DriverStationLCD.Line.kUser3, 1, "                     ");
             DriverStationLCD.getInstance().println(DriverStationLCD.Line.kUser3, 1, "MOTOR IS NOT ON!&#*&$");
-            DriverStationLCD.getInstance().updateLCD();  
+        } else
+        {
+            DriverStationLCD.getInstance().println(DriverStationLCD.Line.kUser3, 1, "                     ");
+            DriverStationLCD.getInstance().println(DriverStationLCD.Line.kUser3, 1, "Motor is ON!!!!");
         }
-        else {
-          DriverStationLCD.getInstance().println(DriverStationLCD.Line.kUser3, 1, "                     ");
-          DriverStationLCD.getInstance().println(DriverStationLCD.Line.kUser3, 1, "Motor is ON!!!!");
-        }
-       return spinnerOn;
+        DriverStationLCD.getInstance().updateLCD();
     }
 }

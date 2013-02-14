@@ -31,13 +31,15 @@ public abstract class CommandBase extends Command {
         // which commands extend), subsystems are not guaranteed to be
         // yet. Thus, their requires() statements may grab null pointers. Bad
         // news. Don't move it.
-        oi = new OI();
 
         pnuematics = new Pnuematics();
         driveTrain = new DriveTrain();
         shooter = new Shooter();
         climber = new Climber();
         
+        // OI needs to be created after the subsystems.
+        oi = new OI();
+
         // Show what command your subsystem is running on the SmartDashboard
         
     }

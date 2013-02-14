@@ -21,25 +21,22 @@ import edu.wpi.first.wpilibj.templates.commands.DriveWithXBox;
 public class DriveTrain extends Subsystem {
     // Put methods for controlling this subsystem
     // here. Call these from Commands.
-    SpeedController leftMotor;
-    SpeedController leftRear;
-    SpeedController rightMotor;
-    SpeedController rightRear;
+    SpeedController leftFrontMotor;
+    SpeedController leftRearMotor;
+    SpeedController rightFrontMotor;
+    SpeedController rightRearMotor;
     RobotDrive drive;
     double rightJoyY;
     double leftJoyY;
     
     public DriveTrain() {
-        leftMotor = new Talon(RobotMap.leftFrontMotorPort);
-        rightMotor = new Talon(RobotMap.rightFrontMotorPort);
+        leftFrontMotor = new Victor(RobotMap.leftFrontMotorPort);
+        rightFrontMotor = new Victor(RobotMap.rightFrontMotorPort);
         // Talons have a built in deadband
-        leftRear = new Talon(RobotMap.leftRearMotorPort);
-        rightRear = new Talon(RobotMap.rightRearMotorPort);
+        leftRearMotor = new Victor(RobotMap.leftRearMotorPort);
+        rightRearMotor = new Victor(RobotMap.rightRearMotorPort);
         
-        drive = new RobotDrive(leftMotor, leftRear, rightMotor, rightRear);
-        
-        
-    
+        drive = new RobotDrive(leftFrontMotor, leftRearMotor, rightFrontMotor, rightRearMotor);
     }
     
     public void driveWithXBox(Joystick xBox) {
@@ -47,9 +44,9 @@ public class DriveTrain extends Subsystem {
         leftJoyY = xBox.getRawAxis(RobotMap.xBoxLeftYAxis);
         rightJoyY = xBox.getRawAxis(RobotMap.xBoxRightYAxis);
 
-        drive.tankDrive((-leftJoyY), (rightJoyY));
+        MessageLogger.LogMessage("Joysticks: " + -leftJoyY + ", " + rightJoyY);
+        drive.tankDrive(-leftJoyY, rightJoyY);
        
-        
     }
 
     public void initDefaultCommand() {

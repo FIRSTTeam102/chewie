@@ -22,12 +22,10 @@ public class Climber extends Subsystem
     Solenoid leftShortExtendSolenoid = new Solenoid(RobotMap.solenoidModule, RobotMap.leftShortExtendPort);
     Solenoid rightLongExtendSolenoid = new Solenoid(RobotMap.solenoidModule, RobotMap.rightLongExtendPort);
     Solenoid rightShortExtendSolenoid = new Solenoid(RobotMap.solenoidModule, RobotMap.rightShortExtendPort);
-    
     Talon leftLongMotor = new Talon(RobotMap.leftLongMotorPort);
     Talon leftShortMotor = new Talon(RobotMap.leftShortMotorPort);
     Talon rightLongMotor = new Talon(RobotMap.rightLongMotorPort);
     Talon rightShortMotor = new Talon(RobotMap.rightShortMotorPort);
-    
     DigitalInput leftLongMaxSensor = new DigitalInput(RobotMap.leftLongMaxSensorPort);
     DigitalInput leftLongMinSensor = new DigitalInput(RobotMap.leftLongMinSensorPort);
     DigitalInput leftShortMaxSensor = new DigitalInput(RobotMap.leftShortMaxSensorPort);
@@ -45,7 +43,6 @@ public class Climber extends Subsystem
         setDefaultCommand(new GetSensors());
     }
 
-    
     // NOTE: these sensors return true when there are NOT sensing anything.  So we negate the get() so that the
     // meaning of "SensorOn" is correct.
     public boolean isLeftLongMaxSensorOn()
@@ -86,5 +83,30 @@ public class Climber extends Subsystem
     public boolean isRightShortMinSensorOn()
     {
         return !rightShortMinSensor.get();
+    }
+
+    public void deployShortArms()
+    {
+        leftShortExtendSolenoid.set(false);
+        rightShortExtendSolenoid.set(false);
+    }
+
+    public void retractShortArms()
+    {
+        leftShortExtendSolenoid.set(true);
+        rightShortExtendSolenoid.set(true);
+    }
+
+    public void deployLongArms()
+    {
+        leftLongExtendSolenoid.set(false);
+        rightLongExtendSolenoid.set(false);
+
+    }
+
+    public void retractLongArms()
+    {
+        leftLongExtendSolenoid.set(true);
+        rightLongExtendSolenoid.set(true);
     }
 }

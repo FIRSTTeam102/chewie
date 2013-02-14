@@ -7,8 +7,10 @@ import edu.wpi.first.wpilibj.buttons.Button;
 import edu.wpi.first.wpilibj.buttons.DigitalIOButton;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
 import edu.wpi.first.wpilibj.templates.commands.CompressorOn;
+import edu.wpi.first.wpilibj.templates.commands.DeployShortArms;
 import edu.wpi.first.wpilibj.templates.commands.GateDown;
 import edu.wpi.first.wpilibj.templates.commands.GateUp;
+import edu.wpi.first.wpilibj.templates.commands.RetractShortArms;
 import edu.wpi.first.wpilibj.templates.commands.Shoot;
 import edu.wpi.first.wpilibj.templates.commands.SpinnerOn;
 import edu.wpi.first.wpilibj.templates.commands.SpinnerToggle;
@@ -22,6 +24,8 @@ public class OI {
     private JoystickButton xBoxA;
     private JoystickButton xBoxStart;
     private JoystickButton xBoxB;
+    private JoystickButton xBoxRightBumper;
+    private JoystickButton xBoxLeftBumper;
   
     
     
@@ -32,9 +36,15 @@ public class OI {
 
             xBoxA = new JoystickButton(xBox, RobotMap.xBoxAIndex);
             xBoxB = new JoystickButton(xBox, RobotMap.xBoxBIndex);
+            xBoxStart = new JoystickButton(xBox, RobotMap.xBoxStartButtonIndex);
+            xBoxRightBumper = new JoystickButton(xBox, RobotMap.xBoxRightBumperIndex);
+            xBoxLeftBumper = new JoystickButton(xBox, RobotMap.xBoxLeftBumperIndex);
+            
        
             xBoxA.whenPressed(new Shoot());
-         //   xBoxB.whenPressed(new SpinnerOn());
+            xBoxStart.whenPressed(new SpinnerToggle());
+            xBoxRightBumper.whenPressed(new DeployShortArms());
+            xBoxLeftBumper.whenPressed(new RetractShortArms());
           
         }
         catch(Exception ex1)
