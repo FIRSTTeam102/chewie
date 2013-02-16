@@ -44,8 +44,8 @@ public class DriveTrain extends Subsystem {
         leftJoyY = xBox.getRawAxis(RobotMap.xBoxLeftYAxis);
         rightJoyY = xBox.getRawAxis(RobotMap.xBoxRightYAxis);
 
-        MessageLogger.LogMessage("Joysticks: " + -leftJoyY + ", " + rightJoyY);
-        drive.tankDrive(-leftJoyY, rightJoyY);
+//        MessageLogger.LogMessage("Joysticks: " + -leftJoyY + ", " + rightJoyY);
+        drive.tankDrive(leftJoyY, -rightJoyY);
        
     }
 

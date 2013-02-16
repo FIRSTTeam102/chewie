@@ -91,4 +91,9 @@ public class RobotMap {
     public static final int xBoxRightXAxis = 4;    
     public static final int xBoxRightYAxis = 5;
     public static final int xBoxDPadHorizontalAxis = 6;
+    
+    public static final double climberArmPushSpeed = -0.50;
+    public static final double climberArmPullSpeed = -1.0;
+    public static final double climberPullTimeOut = 1.0;
+    public static final double climberPushTimeOut = 2.0;
 }
