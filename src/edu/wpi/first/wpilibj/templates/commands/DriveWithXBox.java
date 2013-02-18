@@ -18,7 +18,7 @@ public class DriveWithXBox extends CommandBase {
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
 //        driveTrain.driveWithJoysticks(oi.getLeftJoystick(), oi.getRightJoystick());
-        driveTrain.driveWithXBox(oi.getXBox());
+        driveTrain.driveWithXBox(oi.getXBoxDriver());
     }
 
     // Make this return true when this Command no longer needs to run execute()

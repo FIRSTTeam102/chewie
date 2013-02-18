@@ -13,7 +13,9 @@ import edu.wpi.first.wpilibj.IterativeRobot;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.livewindow.LiveWindow;
+import edu.wpi.first.wpilibj.templates.commands.Autonomous;
 import edu.wpi.first.wpilibj.templates.commands.CommandBase;
+import edu.wpi.first.wpilibj.templates.commands.SpinnerToggle;
 
 
 /**
@@ -37,6 +39,7 @@ public class RobotTemplate extends IterativeRobot {
         // Initialize all subsystems
         try{
         CommandBase.init();
+        autonomousCommand = new Autonomous();
         }
         catch(Exception e){
             MessageLogger.LogError("Unhandled Exception in robotInit()");
@@ -79,7 +82,7 @@ public class RobotTemplate extends IterativeRobot {
         try{
             if (autonomousCommand != null)
             autonomousCommand.cancel();
-    }
+        }
         catch(Exception e){
             MessageLogger.LogError("Unhandled Exception in teleopInit()");
             MessageLogger.LogError(e.toString());

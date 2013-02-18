@@ -26,16 +26,18 @@ import edu.wpi.first.wpilibj.templates.subsystems.Shooter;
 public class OI
 {
     private Joystick xBoxDriver;
-    private Joystick xBoxOperator;
     private JoystickButton xBoxDriverA;
-    private JoystickButton xBoxDriverStart;
     private JoystickButton xBoxDriverB;
+    private JoystickButton xBoxDriverStart;
     private JoystickButton xBoxDriverRightBumper;
     private JoystickButton xBoxDriverLeftBumper;
+
+    private Joystick xBoxOperator;
     private JoystickButton xBoxOperatorA;
     private JoystickButton xBoxOperatorB;
     private JoystickButton xBoxOperatorX;
     private JoystickButton xBoxOperatorY;
+    private JoystickButton xBoxOperatorStart;
 
     public OI()
     {
@@ -53,14 +55,16 @@ public class OI
             xBoxOperatorB = new JoystickButton(xBoxOperator, RobotMap.xBoxBIndex);
             xBoxOperatorX = new JoystickButton(xBoxOperator, RobotMap.xBoxXIndex);
             xBoxOperatorY = new JoystickButton(xBoxOperator, RobotMap.xBoxYIndex);
+            xBoxOperatorStart = new JoystickButton(xBoxOperator, RobotMap.xBoxStartButtonIndex);
 
 
-
-            xBoxDriverA.whenPressed(new Shoot());
+            // Driver Controls
             xBoxDriverStart.whenPressed(new SpinnerToggle());
+            xBoxDriverA.whenPressed(new Shoot()); 
             xBoxDriverRightBumper.whenPressed(new DeployShortArms());
             xBoxDriverLeftBumper.whenPressed(new RetractShortArms());
-            
+
+            // Operator Controls
             xBoxOperatorB.whenPressed(new PushUpShortArmHooks());
             xBoxOperatorA.whenPressed(new PullDownShortArmHooks());
             xBoxOperatorY.whenPressed(new PushUpLongArmHooks());
@@ -73,7 +77,7 @@ public class OI
         }
     }
 
-    public Joystick getXBox()
+    public Joystick getXBoxDriver()
     {
         return xBoxDriver;
     }
