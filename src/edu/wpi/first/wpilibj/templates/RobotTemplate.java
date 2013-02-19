@@ -16,6 +16,7 @@ import edu.wpi.first.wpilibj.livewindow.LiveWindow;
 import edu.wpi.first.wpilibj.templates.commands.Autonomous;
 import edu.wpi.first.wpilibj.templates.commands.CommandBase;
 import edu.wpi.first.wpilibj.templates.commands.SpinnerToggle;
+import edu.wpi.first.wpilibj.templates.subsystems.DriveTrain;
 
 
 /**
@@ -37,6 +38,7 @@ public class RobotTemplate extends IterativeRobot {
         // instantiate the command used for the autonomous period
        
         // Initialize all subsystems
+      
         try{
         CommandBase.init();
         autonomousCommand = new Autonomous();
@@ -51,6 +53,7 @@ public class RobotTemplate extends IterativeRobot {
     public void autonomousInit() {
         // schedule the autonomous command (example)
         try{
+            CommandBase.shooter.turnSpinnerOff();
             autonomousCommand.start();
         }
         catch(Exception e){
@@ -80,6 +83,7 @@ public class RobotTemplate extends IterativeRobot {
         // continue until interrupted by another command, remove
         // this line or comment it out.
         try{
+            CommandBase.shooter.turnSpinnerOff();
             if (autonomousCommand != null)
             autonomousCommand.cancel();
         }

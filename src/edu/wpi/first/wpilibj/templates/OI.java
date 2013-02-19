@@ -9,14 +9,19 @@ import edu.wpi.first.wpilibj.templates.commands.CompressorOn;
 import edu.wpi.first.wpilibj.templates.commands.DeployShortArms;
 import edu.wpi.first.wpilibj.templates.commands.GateDown;
 import edu.wpi.first.wpilibj.templates.commands.GateUp;
+import edu.wpi.first.wpilibj.templates.commands.MotorTest;
+import edu.wpi.first.wpilibj.templates.commands.PneumaticsTest;
 import edu.wpi.first.wpilibj.templates.commands.PullDownLongArmHooks;
 import edu.wpi.first.wpilibj.templates.commands.PullDownShortArmHooks;
 import edu.wpi.first.wpilibj.templates.commands.PushUpLongArmHooks;
 import edu.wpi.first.wpilibj.templates.commands.PushUpShortArmHooks;
 import edu.wpi.first.wpilibj.templates.commands.RetractShortArms;
 import edu.wpi.first.wpilibj.templates.commands.Shoot;
+import edu.wpi.first.wpilibj.templates.commands.ShootFour;
+import edu.wpi.first.wpilibj.templates.commands.ShootTest;
 import edu.wpi.first.wpilibj.templates.commands.SpinnerOn;
 import edu.wpi.first.wpilibj.templates.commands.SpinnerToggle;
+import edu.wpi.first.wpilibj.templates.commands.Turn130;
 import edu.wpi.first.wpilibj.templates.subsystems.Shooter;
 
 /**
@@ -38,6 +43,17 @@ public class OI
     private JoystickButton xBoxOperatorX;
     private JoystickButton xBoxOperatorY;
     private JoystickButton xBoxOperatorStart;
+    private JoystickButton xBoxOperatorRightBumper;
+    private JoystickButton xBoxOperatorLeftBumper;
+    
+    private Joystick xBoxTest;
+    private JoystickButton xBoxTestA;
+    private JoystickButton xBoxTestB;
+    private JoystickButton xBoxTestX;
+    private JoystickButton xBoxTestY;
+    private JoystickButton xBoxTestStart;
+    private JoystickButton xBoxTestRightBumper;
+    private JoystickButton xBoxTestLeftBumper;
 
     public OI()
     {
@@ -45,6 +61,7 @@ public class OI
         {
             xBoxDriver = new Joystick(1);
             xBoxOperator = new Joystick(2);
+            xBoxTest = new Joystick(3);
 
             xBoxDriverA = new JoystickButton(xBoxDriver, RobotMap.xBoxAIndex);
             xBoxDriverB = new JoystickButton(xBoxDriver, RobotMap.xBoxBIndex);
@@ -56,11 +73,18 @@ public class OI
             xBoxOperatorX = new JoystickButton(xBoxOperator, RobotMap.xBoxXIndex);
             xBoxOperatorY = new JoystickButton(xBoxOperator, RobotMap.xBoxYIndex);
             xBoxOperatorStart = new JoystickButton(xBoxOperator, RobotMap.xBoxStartButtonIndex);
+            xBoxOperatorRightBumper = new JoystickButton(xBoxOperator, RobotMap.xBoxRightBumperIndex);
+            xBoxOperatorLeftBumper = new JoystickButton(xBoxOperator, RobotMap.xBoxLeftBumperIndex);
 
+            xBoxTestA = new JoystickButton(xBoxTest, RobotMap.xBoxAIndex);
+            xBoxTestB = new JoystickButton(xBoxTest, RobotMap.xBoxBIndex);
+            xBoxTestX = new JoystickButton(xBoxTest, RobotMap.xBoxXIndex);
+            xBoxTestY = new JoystickButton(xBoxTest, RobotMap.xBoxYIndex);
 
             // Driver Controls
             xBoxDriverStart.whenPressed(new SpinnerToggle());
             xBoxDriverA.whenPressed(new Shoot()); 
+            xBoxDriverB.whenPressed(new ShootFour());
             xBoxDriverRightBumper.whenPressed(new DeployShortArms());
             xBoxDriverLeftBumper.whenPressed(new RetractShortArms());
 
@@ -69,6 +93,17 @@ public class OI
             xBoxOperatorA.whenPressed(new PullDownShortArmHooks());
             xBoxOperatorY.whenPressed(new PushUpLongArmHooks());
             xBoxOperatorX.whenPressed(new PullDownLongArmHooks());
+            
+            xBoxOperatorRightBumper.whenPressed(new GateUp());
+            xBoxOperatorLeftBumper.whenPressed(new GateDown());
+            
+            //Test Controls
+            xBoxTestY.whenPressed(new PneumaticsTest());
+            xBoxTestX.whenPressed(new ShootTest());
+            xBoxTestA.whenPressed(new MotorTest() );
+            xBoxTestB.whenPressed(new Turn130());
+            xBoxTestLeftBumper.whenPressed(new GateDown());
+            xBoxTestRightBumper.whenPressed(new GateUp());
 
         } catch (Exception ex1)
         {
