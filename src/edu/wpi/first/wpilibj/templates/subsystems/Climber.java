@@ -22,10 +22,10 @@ public class Climber extends Subsystem
     Solenoid leftShortExtendSolenoid = new Solenoid(RobotMap.solenoidModule, RobotMap.leftShortExtendPort);
     Solenoid rightLongExtendSolenoid = new Solenoid(RobotMap.solenoidModule, RobotMap.rightLongExtendPort);
     Solenoid rightShortExtendSolenoid = new Solenoid(RobotMap.solenoidModule, RobotMap.rightShortExtendPort);
-    public Talon leftLongMotor = new Talon(RobotMap.leftLongMotorPort);
-    public Talon leftShortMotor = new Talon(RobotMap.leftShortMotorPort);
-    public Talon rightLongMotor = new Talon(RobotMap.rightLongMotorPort);
-    public Talon rightShortMotor = new Talon(RobotMap.rightShortMotorPort);
+    Talon leftLongMotor = new Talon(RobotMap.leftLongMotorPort);
+    Talon leftShortMotor = new Talon(RobotMap.leftShortMotorPort);
+    Talon rightLongMotor = new Talon(RobotMap.rightLongMotorPort);
+    Talon rightShortMotor = new Talon(RobotMap.rightShortMotorPort);
     DigitalInput leftLongMaxSensor = new DigitalInput(RobotMap.leftLongMaxSensorPort);
     DigitalInput leftLongMinSensor = new DigitalInput(RobotMap.leftLongMinSensorPort);
     DigitalInput leftShortMaxSensor = new DigitalInput(RobotMap.leftShortMaxSensorPort);
@@ -34,6 +34,10 @@ public class Climber extends Subsystem
     DigitalInput rightLongMinSensor = new DigitalInput(RobotMap.rightLongMinSensorPort);
     DigitalInput rightShortMaxSensor = new DigitalInput(RobotMap.rightShortMaxSensorPort);
     DigitalInput rightShortMinSensor = new DigitalInput(RobotMap.rightShortMinSensorPort);
+    boolean canDriveLeftLongDown = true;
+    boolean canDriveLeftShortDown = true;
+    boolean canDriveRightLongDown = true;
+    boolean canDriveRightShortDown = true;
 
     // Put methods for controlling this subsystem
     // here. Call these from Commands.
@@ -52,7 +56,10 @@ public class Climber extends Subsystem
 
     public boolean isLeftLongMinSensorOn()
     {
-        return !leftLongMinSensor.get();
+        boolean isOn = !leftLongMinSensor.get();
+        if(isOn)
+            canDriveLeftLongDown = false;
+        return isOn;
     }
 
     public boolean isLeftShortMaxSensorOn()
@@ -108,5 +115,14 @@ public class Climber extends Subsystem
     {
         leftLongExtendSolenoid.set(true);
         rightLongExtendSolenoid.set(true);
+    }
+    
+    public void driveLeftLongMotor(boolean isPull){
+        if ((!canDriveLeftLongDown) && (isPull))
+            leftLongMotor.set(0.0);
+        else if(isPull)
+            leftLongMotor.set(RobotMap.climberArmPullSpeed);
+        else
+            leftLongMotor.set(-RobotMap.climberArmPullSpeed);
     }
 }
