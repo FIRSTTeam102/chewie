@@ -5,10 +5,12 @@ import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.buttons.Button;
 import edu.wpi.first.wpilibj.buttons.DigitalIOButton;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
+import edu.wpi.first.wpilibj.templates.commands.ClimbUp;
 import edu.wpi.first.wpilibj.templates.commands.CompressorOn;
 import edu.wpi.first.wpilibj.templates.commands.DeployShortArms;
 import edu.wpi.first.wpilibj.templates.commands.GateDown;
 import edu.wpi.first.wpilibj.templates.commands.GateUp;
+import edu.wpi.first.wpilibj.templates.commands.GetSensors;
 import edu.wpi.first.wpilibj.templates.commands.MotorTest;
 import edu.wpi.first.wpilibj.templates.commands.PneumaticsTest;
 import edu.wpi.first.wpilibj.templates.commands.PullDownLongArmHooks;
@@ -21,6 +23,7 @@ import edu.wpi.first.wpilibj.templates.commands.ShootFour;
 import edu.wpi.first.wpilibj.templates.commands.ShootTest;
 import edu.wpi.first.wpilibj.templates.commands.SpinnerOn;
 import edu.wpi.first.wpilibj.templates.commands.SpinnerToggle;
+import edu.wpi.first.wpilibj.templates.commands.StopClimb;
 import edu.wpi.first.wpilibj.templates.commands.Turn130;
 import edu.wpi.first.wpilibj.templates.subsystems.Shooter;
 
@@ -57,17 +60,22 @@ public class OI
 
     public OI()
     {
+        String context = "";
         try
         {
+            context = "creating Joysticks.";
             xBoxDriver = new Joystick(1);
             xBoxOperator = new Joystick(2);
             xBoxTest = new Joystick(3);
 
+            context = "creating driver buttons.";
             xBoxDriverA = new JoystickButton(xBoxDriver, RobotMap.xBoxAIndex);
             xBoxDriverB = new JoystickButton(xBoxDriver, RobotMap.xBoxBIndex);
             xBoxDriverStart = new JoystickButton(xBoxDriver, RobotMap.xBoxStartButtonIndex);
             xBoxDriverRightBumper = new JoystickButton(xBoxDriver, RobotMap.xBoxRightBumperIndex);
             xBoxDriverLeftBumper = new JoystickButton(xBoxDriver, RobotMap.xBoxLeftBumperIndex);
+
+            context = "creating operator buttons.";
             xBoxOperatorA = new JoystickButton(xBoxOperator, RobotMap.xBoxAIndex);
             xBoxOperatorB = new JoystickButton(xBoxOperator, RobotMap.xBoxBIndex);
             xBoxOperatorX = new JoystickButton(xBoxOperator, RobotMap.xBoxXIndex);
@@ -76,38 +84,46 @@ public class OI
             xBoxOperatorRightBumper = new JoystickButton(xBoxOperator, RobotMap.xBoxRightBumperIndex);
             xBoxOperatorLeftBumper = new JoystickButton(xBoxOperator, RobotMap.xBoxLeftBumperIndex);
 
+            context = "creating test buttons.";
             xBoxTestA = new JoystickButton(xBoxTest, RobotMap.xBoxAIndex);
             xBoxTestB = new JoystickButton(xBoxTest, RobotMap.xBoxBIndex);
             xBoxTestX = new JoystickButton(xBoxTest, RobotMap.xBoxXIndex);
             xBoxTestY = new JoystickButton(xBoxTest, RobotMap.xBoxYIndex);
 
             // Driver Controls
-            xBoxDriverStart.whenPressed(new SpinnerToggle());
-            xBoxDriverA.whenPressed(new Shoot()); 
-            xBoxDriverB.whenPressed(new ShootFour());
-            xBoxDriverRightBumper.whenPressed(new DeployShortArms());
-            xBoxDriverLeftBumper.whenPressed(new RetractShortArms());
-
             // Operator Controls
-            xBoxOperatorB.whenPressed(new PushUpShortArmHooks());
-            xBoxOperatorA.whenPressed(new PullDownShortArmHooks());
-            xBoxOperatorY.whenPressed(new PushUpLongArmHooks());
-            xBoxOperatorX.whenPressed(new PullDownLongArmHooks());
+
+            context = "xBoxOperatorStart.whenPressed(new SpinnerToggle())";
+            xBoxOperatorStart.whenPressed(new SpinnerToggle());
+            context = "xBoxOperatorA.whenPressed(new Shoot())";
+            xBoxOperatorA.whenPressed(new Shoot()); 
+            context = "xBoxOperatorX.whenPressed(new ShootFour())";
+            xBoxOperatorX.whenPressed(new ShootFour());
             
-            xBoxOperatorRightBumper.whenPressed(new GateUp());
-            xBoxOperatorLeftBumper.whenPressed(new GateDown());
+            context = "xBoxOperatorRightBumper.whenPressed(new ClimbUp())";
+            xBoxOperatorRightBumper.whenPressed(new ClimbUp());
+            context = "xBoxOperatorRightBumper.whenReleased(new StopClimb())";
+            xBoxOperatorRightBumper.whenReleased(new StopClimb());
             
             //Test Controls
+            context  = "xBoxTestY.whenPressed(new PneumaticsTest())";
             xBoxTestY.whenPressed(new PneumaticsTest());
+            context  = "xBoxTestX.whenPressed(new ShootTest())";
             xBoxTestX.whenPressed(new ShootTest());
+            context  = "xBoxTestA.whenPressed(new MotorTest() )";
             xBoxTestA.whenPressed(new MotorTest() );
+            context  = "xBoxTestB.whenPressed(new Turn130())";
             xBoxTestB.whenPressed(new Turn130());
-            xBoxTestLeftBumper.whenPressed(new GateDown());
-            xBoxTestRightBumper.whenPressed(new GateUp());
+            context  = "xBoxTestLeftBumper.whenPressed(new GateDown())";
+//            xBoxTestLeftBumper.whenPressed(new GateDown());   // was throwing exception.
+            context  = "xBoxTestRightBumper.whenPressed(new GateUp())";
+//            xBoxTestRightBumper.whenPressed(new GateUp());    // was throwing exception.
+            context  = " xBoxTestRightBumper.whenPressed(new GetSensors())";
+            xBoxTestRightBumper.whenPressed(new GetSensors());   
 
         } catch (Exception ex1)
         {
-            MessageLogger.LogError("Unhandled Exception in OI constructor.");
+            MessageLogger.LogError("Unhandled Exception in OI constructor while " + context);
             MessageLogger.LogError(ex1.toString());
         }
     }

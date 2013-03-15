@@ -94,6 +94,6 @@ public class RobotMap {
     
     public static final double climberArmPushSpeed = -0.50;
     public static final double climberArmPullSpeed = -1.0;
-    public static final double climberPullTimeOut = 1.0;
+    public static final double climberPullTimeOut = 5.0;
     public static final double climberPushTimeOut = 2.0;
 }

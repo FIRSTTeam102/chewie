@@ -2,7 +2,7 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-package edu.wpi.first.wpilibj.templates.commands;
+    package edu.wpi.first.wpilibj.templates.commands;
 
 import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.templates.RobotMap;
@@ -14,10 +14,18 @@ import edu.wpi.first.wpilibj.templates.RobotMap;
 public class PullDownLongArmHooks extends CommandBase
 {
     double initialTime;
+    double timeout;
 
     public PullDownLongArmHooks()
     {
         requires(climber);
+        timeout = RobotMap.climberPullTimeOut;
+
+    }
+    public PullDownLongArmHooks(double overrideTimeout)
+    {
+        requires(climber);
+        timeout = overrideTimeout;
 
     }
 
@@ -49,7 +57,7 @@ public class PullDownLongArmHooks extends CommandBase
     {
 
         return ((climber.isRightLongMinSensorOn() && climber.isLeftLongMinSensorOn())
-                || (Timer.getFPGATimestamp() - initialTime) > RobotMap.climberPullTimeOut);
+                || (Timer.getFPGATimestamp() - initialTime) > timeout);
     }
 
     // Called once after isFinished returns true

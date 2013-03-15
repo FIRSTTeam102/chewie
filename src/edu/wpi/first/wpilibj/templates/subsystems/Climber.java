@@ -22,10 +22,12 @@ public class Climber extends Subsystem
     Solenoid leftShortExtendSolenoid = new Solenoid(RobotMap.solenoidModule, RobotMap.leftShortExtendPort);
     Solenoid rightLongExtendSolenoid = new Solenoid(RobotMap.solenoidModule, RobotMap.rightLongExtendPort);
     Solenoid rightShortExtendSolenoid = new Solenoid(RobotMap.solenoidModule, RobotMap.rightShortExtendPort);
+    
     public Talon leftLongMotor = new Talon(RobotMap.leftLongMotorPort);
     public Talon leftShortMotor = new Talon(RobotMap.leftShortMotorPort);
     public Talon rightLongMotor = new Talon(RobotMap.rightLongMotorPort);
     public Talon rightShortMotor = new Talon(RobotMap.rightShortMotorPort);
+    
     DigitalInput leftLongMaxSensor = new DigitalInput(RobotMap.leftLongMaxSensorPort);
     DigitalInput leftLongMinSensor = new DigitalInput(RobotMap.leftLongMinSensorPort);
     DigitalInput leftShortMaxSensor = new DigitalInput(RobotMap.leftShortMaxSensorPort);
