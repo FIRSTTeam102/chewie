@@ -54,7 +54,7 @@ public class RobotMap {
     public static final int rightLongMotorPort = 8;
     public static final int rightShortMotorPort = 7;
     
-    //Sensor Digital Input Port
+//    //Sensor Digital Input Port
     public static final int leftLongMaxSensorPort = 1;
     public static final int leftShortMaxSensorPort = 2;
     public static final int rightLongMaxSensorPort = 9;
@@ -94,6 +94,7 @@ public class RobotMap {
     
     public static final double climberArmPushSpeed = -0.50;
     public static final double climberArmPullSpeed = -1.0;
-    public static final double climberPullTimeOut = 5.0;
-    public static final double climberPushTimeOut = 2.0;
+    public static final double climberPullTimeOut = 10.0;
+    public static final double climberPushTimeOut = 15.0;
+    public static final double climberShortPushTimeOut = 5.0;
 }

@@ -31,7 +31,7 @@ public class Turn130 extends CommandBase {
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-        return (Timer.getFPGATimestamp() - initialTime > 1.0);
+        return (Timer.getFPGATimestamp() - initialTime > 0.9);
     }
 
     // Called once after isFinished returns true

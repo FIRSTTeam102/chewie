@@ -16,7 +16,7 @@ public class PullDownShortArmHooks extends CommandBase
 {
     double initialTime;
 
-    public PullDownShortArmHooks()
+    public PullDownShortArmHooks()  
     {
         requires(climber);
 
@@ -25,6 +25,7 @@ public class PullDownShortArmHooks extends CommandBase
     // Called just before this Command runs the first time
     protected void initialize()
     {
+        MessageLogger.LogMessage("PullDownShortArmHooks()");
         climber.rightShortMotor.set(RobotMap.climberArmPullSpeed);
         climber.leftShortMotor.set(RobotMap.climberArmPullSpeed);
         initialTime = Timer.getFPGATimestamp();
@@ -49,13 +50,13 @@ public class PullDownShortArmHooks extends CommandBase
     protected boolean isFinished()
            
     {
-        if ((climber.isRightShortMinSensorOn() && climber.isLeftShortMinSensorOn())
-                || (Timer.getFPGATimestamp() - initialTime) > RobotMap.climberPullTimeOut) {
-            MessageLogger.LogMessage("PullDownShortArms Timed Out");
-        }
+        boolean finished = ((climber.isRightShortMinSensorOn() && climber.isLeftShortMinSensorOn())
+                || ((Timer.getFPGATimestamp() - initialTime) > RobotMap.climberPullTimeOut));
+        
+        if((Timer.getFPGATimestamp() - initialTime) > RobotMap.climberPullTimeOut)
+            MessageLogger.LogMessage("PullDownShortArmHooks Timed Out");
 
-        return ((climber.isRightShortMinSensorOn() && climber.isLeftShortMinSensorOn())
-                || (Timer.getFPGATimestamp() - initialTime) > RobotMap.climberPullTimeOut);
+        return finished;
     }
 
     // Called once after isFinished returns true

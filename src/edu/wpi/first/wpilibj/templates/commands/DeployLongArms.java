@@ -4,6 +4,8 @@
  */
 package edu.wpi.first.wpilibj.templates.commands;
 
+import Team102Lib.MessageLogger;
+
 /**
  *
  * @author Admin
@@ -18,6 +20,7 @@ public class DeployLongArms extends CommandBase
     // Called just before this Command runs the first time
     protected void initialize()
     {
+        MessageLogger.LogMessage("DeployLongArms()");
     }
 
     // Called repeatedly when this Command is scheduled to run

@@ -14,11 +14,18 @@ import edu.wpi.first.wpilibj.templates.RobotMap;
 public class PushUpShortArmHooks extends CommandBase
 {
     double initialTime;
+    double timeout;
 
     public PushUpShortArmHooks()
     {
         requires(climber);
+        timeout =  RobotMap.climberPushTimeOut;
+    }
 
+    public PushUpShortArmHooks(double theTimeout)
+    {
+        requires(climber);
+        timeout =  theTimeout;
     }
 
     // Called just before this Command runs the first time
@@ -32,24 +39,12 @@ public class PushUpShortArmHooks extends CommandBase
     // Called repeatedly when this Command is scheduled to run
     protected void execute()
     {
-        if (climber.isRightShortMaxSensorOn())
-        {
-            climber.rightLongMotor.set(0.0);
-        }
-
-        if (climber.isLeftShortMaxSensorOn())
-        {
-            climber.leftLongMotor.set(0.0);
-        }
-
     }
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished()
     {
-
-        return ((climber.isRightShortMaxSensorOn() && climber.isLeftShortMaxSensorOn())
-                || (Timer.getFPGATimestamp() - initialTime) > RobotMap.climberPushTimeOut);
+        return ((Timer.getFPGATimestamp() - initialTime) > timeout);
     }
 
     // Called once after isFinished returns true

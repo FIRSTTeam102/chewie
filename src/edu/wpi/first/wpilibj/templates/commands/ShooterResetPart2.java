@@ -4,7 +4,6 @@
  */
 package edu.wpi.first.wpilibj.templates.commands;
 
-import edu.wpi.first.wpilibj.DriverStationLCD;
 import edu.wpi.first.wpilibj.command.CommandGroup;
 import edu.wpi.first.wpilibj.command.WaitCommand;
 
@@ -12,18 +11,13 @@ import edu.wpi.first.wpilibj.command.WaitCommand;
  *
  * @author Admin
  */
-public class Shoot extends CommandGroup
+public class ShooterResetPart2 extends CommandGroup
 {
-    public Shoot()
+    public ShooterResetPart2()
     {
-        
-
-        addSequential(new LoaderOut());
-        addSequential(new WaitCommand(1.0));
-        addSequential(new GateDown());
-        addSequential(new WaitCommand(0.1));
+        // Add Commands here:
         addSequential(new LoaderIn());
-        addSequential(new WaitCommand(0.4));
+        addSequential(new WaitCommand(0.3));
         addSequential(new GateUp());
     }
 }

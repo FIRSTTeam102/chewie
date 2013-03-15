@@ -1,11 +1,14 @@
 package edu.wpi.first.wpilibj.templates;
 
 import Team102Lib.MessageLogger;
+import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.buttons.Button;
 import edu.wpi.first.wpilibj.buttons.DigitalIOButton;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
-import edu.wpi.first.wpilibj.templates.commands.ClimbUp;
+import edu.wpi.first.wpilibj.templates.commands.ClimbToFirstLevel;
+import edu.wpi.first.wpilibj.templates.commands.ClimbToSecondLevel;
+import edu.wpi.first.wpilibj.templates.commands.CommandBase;
 import edu.wpi.first.wpilibj.templates.commands.CompressorOn;
 import edu.wpi.first.wpilibj.templates.commands.DeployShortArms;
 import edu.wpi.first.wpilibj.templates.commands.GateDown;
@@ -17,10 +20,14 @@ import edu.wpi.first.wpilibj.templates.commands.PullDownLongArmHooks;
 import edu.wpi.first.wpilibj.templates.commands.PullDownShortArmHooks;
 import edu.wpi.first.wpilibj.templates.commands.PushUpLongArmHooks;
 import edu.wpi.first.wpilibj.templates.commands.PushUpShortArmHooks;
+import edu.wpi.first.wpilibj.templates.commands.ResetClimb;
+import edu.wpi.first.wpilibj.templates.commands.ResetFirstLevelClimb;
 import edu.wpi.first.wpilibj.templates.commands.RetractShortArms;
 import edu.wpi.first.wpilibj.templates.commands.Shoot;
 import edu.wpi.first.wpilibj.templates.commands.ShootFour;
 import edu.wpi.first.wpilibj.templates.commands.ShootTest;
+import edu.wpi.first.wpilibj.templates.commands.ShooterReset;
+import edu.wpi.first.wpilibj.templates.commands.ShooterResetPart2;
 import edu.wpi.first.wpilibj.templates.commands.SpinnerOn;
 import edu.wpi.first.wpilibj.templates.commands.SpinnerToggle;
 import edu.wpi.first.wpilibj.templates.commands.StopClimb;
@@ -48,6 +55,7 @@ public class OI
     private JoystickButton xBoxOperatorStart;
     private JoystickButton xBoxOperatorRightBumper;
     private JoystickButton xBoxOperatorLeftBumper;
+    private JoystickButton xBoxOperatorBack;
     
     private Joystick xBoxTest;
     private JoystickButton xBoxTestA;
@@ -83,12 +91,16 @@ public class OI
             xBoxOperatorStart = new JoystickButton(xBoxOperator, RobotMap.xBoxStartButtonIndex);
             xBoxOperatorRightBumper = new JoystickButton(xBoxOperator, RobotMap.xBoxRightBumperIndex);
             xBoxOperatorLeftBumper = new JoystickButton(xBoxOperator, RobotMap.xBoxLeftBumperIndex);
-
+            xBoxOperatorBack = new JoystickButton(xBoxOperator, RobotMap.xBoxBackButtonIndex);
+                    
             context = "creating test buttons.";
             xBoxTestA = new JoystickButton(xBoxTest, RobotMap.xBoxAIndex);
             xBoxTestB = new JoystickButton(xBoxTest, RobotMap.xBoxBIndex);
             xBoxTestX = new JoystickButton(xBoxTest, RobotMap.xBoxXIndex);
             xBoxTestY = new JoystickButton(xBoxTest, RobotMap.xBoxYIndex);
+            xBoxTestStart = new JoystickButton(xBoxTest, RobotMap.xBoxStartButtonIndex);
+            xBoxTestRightBumper = new JoystickButton(xBoxTest, RobotMap.xBoxRightBumperIndex);
+            xBoxTestLeftBumper = new JoystickButton(xBoxTest, RobotMap.xBoxLeftBumperIndex);
 
             // Driver Controls
             // Operator Controls
@@ -100,26 +112,47 @@ public class OI
             context = "xBoxOperatorX.whenPressed(new ShootFour())";
             xBoxOperatorX.whenPressed(new ShootFour());
             
-            context = "xBoxOperatorRightBumper.whenPressed(new ClimbUp())";
-            xBoxOperatorRightBumper.whenPressed(new ClimbUp());
+            context = "xBoxOperatorRightBumper.whenPressed(new ClimbToSecondLevel())";
+            xBoxOperatorRightBumper.whenPressed(new ClimbToFirstLevel());
+//            context = "xBoxOperatorRightBumper.whenPressed(new RetractShortArms()";
+//            xBoxOperatorRightBumper.whenPressed(new RetractShortArms());
             context = "xBoxOperatorRightBumper.whenReleased(new StopClimb())";
             xBoxOperatorRightBumper.whenReleased(new StopClimb());
+            context = "xBoxOperatorLeftBumper.whenPressed(new ResetFirstLevelClimb())";
+            xBoxOperatorLeftBumper.whenPressed(new ResetFirstLevelClimb());
+//            context = "xBoxOperatorLeftBumper.whenPressed(new DeployShortArms())";
+//            xBoxOperatorLeftBumper.whenPressed(new DeployShortArms());
+            context = "xBoxOperatorLeftBumper.whenPressed(new ResetClimb())";
+            xBoxOperatorBack.whenPressed(new GateDown());
+            xBoxOperatorBack.whileHeld(new ShooterReset());
+            xBoxOperatorBack.whenReleased(new ShooterResetPart2());
             
             //Test Controls
-            context  = "xBoxTestY.whenPressed(new PneumaticsTest())";
-            xBoxTestY.whenPressed(new PneumaticsTest());
-            context  = "xBoxTestX.whenPressed(new ShootTest())";
-            xBoxTestX.whenPressed(new ShootTest());
+            DriverStation ds = DriverStation.getInstance();
+
             context  = "xBoxTestA.whenPressed(new MotorTest() )";
             xBoxTestA.whenPressed(new MotorTest() );
-            context  = "xBoxTestB.whenPressed(new Turn130())";
-            xBoxTestB.whenPressed(new Turn130());
-            context  = "xBoxTestLeftBumper.whenPressed(new GateDown())";
+            context  = "xBoxTestB.whenPressed(new PushUpLongArmHooks()";
+            xBoxTestB.whenPressed(new PushUpLongArmHooks());
+            context  = "xBoxTestX.whenPressed(new ShootTest())";
+            xBoxTestX.whenPressed(new ShootTest());
+            context = "xBoxTestY.whenPressed(new PushUpShortArmHooks()";
+            xBoxTestY.whenPressed(new PushUpShortArmHooks());
+            context  = "xBoxTestStart.whenPressed(new PneumaticsTest())";
+            if(ds.getDigitalIn(1)) {
+                xBoxTestStart.whenPressed(new ClimbToFirstLevel());
+            }
+            else {
+                xBoxTestStart.whenPressed(new PneumaticsTest());
+            }
+//            context  = "xBoxTestLeftBumper.whenPressed(new GateDown())";
 //            xBoxTestLeftBumper.whenPressed(new GateDown());   // was throwing exception.
-            context  = "xBoxTestRightBumper.whenPressed(new GateUp())";
+//            context  = "xBoxTestRightBumper.whenPressed(new GateUp())";
 //            xBoxTestRightBumper.whenPressed(new GateUp());    // was throwing exception.
-            context  = " xBoxTestRightBumper.whenPressed(new GetSensors())";
-            xBoxTestRightBumper.whenPressed(new GetSensors());   
+             context = "xBoxTestRighBumper.whenPressed(new PullDownShortArmHooks()";
+            xBoxTestRightBumper.whenPressed(new PullDownShortArmHooks()); 
+            context = "xBoxTestLeftBumper.whenPressed(new PullDownLongArmHooks()";
+            xBoxTestLeftBumper.whenPressed(new PullDownLongArmHooks());
 
         } catch (Exception ex1)
         {

@@ -4,6 +4,7 @@
  */
 package edu.wpi.first.wpilibj.templates.commands;
 
+import Team102Lib.MessageLogger;
 import edu.wpi.first.wpilibj.command.CommandGroup;
 import edu.wpi.first.wpilibj.command.WaitCommand;
 
@@ -11,19 +12,14 @@ import edu.wpi.first.wpilibj.command.WaitCommand;
  *
  * @author Admin
  */
-public class ClimbUp extends CommandGroup
+public class ClimbToFirstLevel extends CommandGroup
 {
-    public ClimbUp()
+    public ClimbToFirstLevel()
     {
         // Add Commands here:
         addSequential(new DeployShortArms());
-        addSequential(new WaitCommand(0.5));
+        addSequential(new WaitCommand(1.5));
         addSequential(new PullDownShortArmHooks());
-
-        addSequential(new DeployLongArms());
-        addSequential(new PullDownLongArmHooks(1.0)); // Pull for 1 sec
-        addSequential(new RetractShortArms());
-        addSequential(new PullDownLongArmHooks());
 
         // To run multiple commands at the same time,
         // use addParallel()

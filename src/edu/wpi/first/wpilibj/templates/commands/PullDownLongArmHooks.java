@@ -4,6 +4,7 @@
  */
     package edu.wpi.first.wpilibj.templates.commands;
 
+import Team102Lib.MessageLogger;
 import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.templates.RobotMap;
 
@@ -32,6 +33,7 @@ public class PullDownLongArmHooks extends CommandBase
     // Called just before this Command runs the first time
     protected void initialize()
     {
+        MessageLogger.LogMessage("PullDownLongArmHooks(" + timeout + ")");
         climber.rightLongMotor.set(RobotMap.climberArmPullSpeed);
         climber.leftLongMotor.set(RobotMap.climberArmPullSpeed);
         initialTime = Timer.getFPGATimestamp();
@@ -55,9 +57,13 @@ public class PullDownLongArmHooks extends CommandBase
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished()
     {
-
-        return ((climber.isRightLongMinSensorOn() && climber.isLeftLongMinSensorOn())
+        boolean finished = ((climber.isRightLongMinSensorOn() && climber.isLeftLongMinSensorOn())
                 || (Timer.getFPGATimestamp() - initialTime) > timeout);
+        
+        if((Timer.getFPGATimestamp() - initialTime) > timeout)
+            MessageLogger.LogMessage("PullDownLongArmHooks timed out.");
+        
+        return finished;
     }
 
     // Called once after isFinished returns true

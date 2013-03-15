@@ -35,13 +35,13 @@ public class PneumaticsTest extends CommandBase {
         Timer.delay(0.5);
         climber.deployShortArms();
         MessageLogger.LogMessage("Short Arms Deployed");
-        Timer.delay(0.5);
+        Timer.delay(5);
         climber.retractShortArms();
         MessageLogger.LogMessage("Short Arms Retracted");
-        Timer.delay(0.5);
+        Timer.delay(5);
         climber.deployLongArms();
         MessageLogger.LogMessage("Long Arms Deployed");
-        Timer.delay(0.5);
+        Timer.delay(5);
         climber.retractLongArms();
         MessageLogger.LogMessage("Long Arms Retracted");
         
