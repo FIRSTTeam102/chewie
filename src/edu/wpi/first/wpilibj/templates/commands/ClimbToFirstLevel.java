@@ -20,7 +20,7 @@ public class ClimbToFirstLevel extends CommandGroup
         addSequential(new DeployShortArms());
         addSequential(new WaitCommand(1.5));
         addSequential(new PullDownShortArmHooks());
-
+        addSequential(new ClimbSucessfulCheck());
         // To run multiple commands at the same time,
         // use addParallel()
         // e.g. addParallel(new Command1());

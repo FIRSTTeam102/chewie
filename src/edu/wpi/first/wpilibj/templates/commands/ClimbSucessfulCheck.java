@@ -5,31 +5,39 @@
 package edu.wpi.first.wpilibj.templates.commands;
 
 import Team102Lib.MessageLogger;
-import edu.wpi.first.wpilibj.templates.RobotMap;
 
 /**
  *
  * @author Admin
  */
-public class SpinnerOn extends CommandBase
+public class ClimbSucessfulCheck extends CommandBase
 {
-    public SpinnerOn()
+    public ClimbSucessfulCheck()
     {
+        requires(climber);
         // Use requires() here to declare subsystem dependencies
-        requires(shooter);
-        this.setInterruptible(false);
+        // eg. requires(chassis);
     }
 
     // Called just before this Command runs the first time
     protected void initialize()
     {
+        if (climber.climbLevel == 1)
+        {
+            CommandBase.oi.xBoxOperatorRightBumper.whenPressed(new ClimbToSecondLevel());
+            climber.climbLevel = 2;
+            MessageLogger.LogMessage("Current Climb Level is " + climber.climbLevel);
+        } else
+        {
+            CommandBase.oi.xBoxOperatorRightBumper.whenPressed(new ClimbToFirstLevel());
+            climber.climbLevel = 1;
+            MessageLogger.LogMessage("Current Climb Level is " + climber.climbLevel);
+        }
     }
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute()
     {
-        shooter.spinner.set(RobotMap.spinnerMotorDirection);
-//        MessageLogger.LogMessage("Spinner is: " + shooter.spinner.get());
     }
 
     // Make this return true when this Command no longer needs to run execute()

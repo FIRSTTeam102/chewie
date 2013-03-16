@@ -16,6 +16,7 @@ public class SpinnerToggle extends CommandBase
     public SpinnerToggle()
     {
         requires(shooter);
+        this.setInterruptible(false);
         // eg. requires(chassis);
     }
 

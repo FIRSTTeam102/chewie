@@ -28,6 +28,7 @@ public class Climber extends Subsystem
     public Talon leftShortMotor = new Talon(RobotMap.leftShortMotorPort);
     public Talon rightLongMotor = new Talon(RobotMap.rightLongMotorPort);
     public Talon rightShortMotor = new Talon(RobotMap.rightShortMotorPort);
+    public int climbLevel = 1;
     
     //DigitalInput leftLongMaxSensor = new DigitalInput(RobotMap.leftLongMaxSensorPort);
     DigitalInput leftLongMinSensor = new DigitalInput(RobotMap.leftLongMinSensorPort);

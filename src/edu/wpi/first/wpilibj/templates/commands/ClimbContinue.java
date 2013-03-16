@@ -19,7 +19,7 @@ public class ClimbContinue extends CommandGroup
         // Add Commands here:
         addSequential(new DeployLongArms());
         addSequential(new WaitCommand(1.5));
-        addSequential(new PullDownLongArmHooks(1.0)); // Pull for 1 sec
+//        addSequential(new PullDownLongArmHooks(1.0)); // Pull for 1 sec
         addSequential(new RetractShortArms());
         addSequential(new PullDownLongArmHooks());
         addSequential(new PushUpShortArmHooks());

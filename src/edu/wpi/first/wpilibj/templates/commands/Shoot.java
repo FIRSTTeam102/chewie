@@ -23,7 +23,7 @@ public class Shoot extends CommandGroup
         addSequential(new GateDown());
         addSequential(new WaitCommand(0.1));
         addSequential(new LoaderIn());
-        addSequential(new WaitCommand(0.4));
+        addSequential(new WaitCommand(0.5));
         addSequential(new GateUp());
     }
 }

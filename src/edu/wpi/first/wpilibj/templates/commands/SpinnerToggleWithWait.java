@@ -5,17 +5,17 @@
 package edu.wpi.first.wpilibj.templates.commands;
 
 import edu.wpi.first.wpilibj.command.CommandGroup;
+import edu.wpi.first.wpilibj.command.WaitCommand;
 
 /**
  *
  * @author Admin
  */
-public class ClimbToSecondLevel extends CommandGroup
+public class SpinnerToggleWithWait extends CommandGroup
 {
-    public ClimbToSecondLevel()
+    public SpinnerToggleWithWait()
     {
-        addSequential(new ClimbToFirstLevel());
-        addSequential(new ClimbContinue());
-//        addSequential(new ClimbSucessfulCheck());
+        addSequential(new SpinnerToggle());
+        addSequential(new WaitCommand(1.5));
     }
 }
